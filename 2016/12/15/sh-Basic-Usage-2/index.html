@@ -1,0 +1,743 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="任何一种编程语言都有变量，shell脚本也不例外。 基本约定 变量默认全都是字符串 也就是说如果有一个变量a=1，当执行echo $a + 1的时候，输出结果是1 + 1，而不是2。  变量不需要事先声明">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell脚本入门之二 - 变量">
+<meta property="og:url" content="http://yoursite.com/2016/12/15/sh-Basic-Usage-2/index.html">
+<meta property="og:site_name" content="MySlsh">
+<meta property="og:description" content="任何一种编程语言都有变量，shell脚本也不例外。 基本约定 变量默认全都是字符串 也就是说如果有一个变量a=1，当执行echo $a + 1的时候，输出结果是1 + 1，而不是2。  变量不需要事先声明">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-21T06:38:29.551Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shell脚本入门之二 - 变量">
+<meta name="twitter:description" content="任何一种编程语言都有变量，shell脚本也不例外。 基本约定 变量默认全都是字符串 也就是说如果有一个变量a=1，当执行echo $a + 1的时候，输出结果是1 + 1，而不是2。  变量不需要事先声明">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/12/15/sh-Basic-Usage-2/"/>
+
+
+
+
+
+  <title> shell脚本入门之二 - 变量 | MySlsh </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">MySlsh</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/15/sh-Basic-Usage-2/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Rick">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="MySlsh">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="MySlsh" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                shell脚本入门之二 - 变量
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-15T14:54:25+08:00">
+                2016-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/12/15/sh-Basic-Usage-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/15/sh-Basic-Usage-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>任何一种编程语言都有变量，shell脚本也不例外。</p>
+<h2 id="基本约定"><a href="#基本约定" class="headerlink" title="基本约定"></a>基本约定</h2><ol>
+<li><p>变量默认全都是字符串</p>
+<p>也就是说如果有一个变量<code>a=1</code>，当执行<code>echo $a + 1</code>的时候，输出结果是<code>1 + 1</code>，而不是<code>2</code>。</p>
+</li>
+<li><p>变量不需要事先声明</p>
+</li>
+</ol>
+<a id="more"></a>
+<h2 id="变量名约定"><a href="#变量名约定" class="headerlink" title="变量名约定"></a>变量名约定</h2><ol>
+<li><p>由数字，大小写字母，下划线(<code>_</code>)组成</p>
+</li>
+<li><p>不能以数字开头</p>
+</li>
+</ol>
+<p>也就是说变量名应当符合正则表达式：<code>[a-zA-Z_][a-zA-Z0-9_]+</code></p>
+<h2 id="变量的赋值和引用"><a href="#变量的赋值和引用" class="headerlink" title="变量的赋值和引用"></a>变量的赋值和引用</h2><h3 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h3><ol>
+<li><p>因为变量不需要声明，所以对变量进行赋值的过程实际上也是创建变量的过程。</p>
+</li>
+<li><p>使用<code>=</code>对变量进行赋值。</p>
+</li>
+<li><p>赋值的时候<code>=</code>两边不能有任何空格</p>
+</li>
+<li><p><code>=</code>右边的值可以不加引号，但是如果其中包含空格，则需要加引号</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ a=hello <span class="comment">#变量的值可以不用引号</span></span><br><span class="line">$ a=<span class="string">"hello world"</span> <span class="comment">#如果值中包含空格，则需要引号</span></span><br></pre></td></tr></table></figure>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><ol>
+<li><p>对变量进行引用的时候，在其名字前面加<code>$</code></p>
+</li>
+<li><p>对变量进行引用的时候，可以在引号内部进行</p>
+</li>
+<li><p>如果引用的时候，变量名后面紧跟有其它字符，可能造成混淆，可以用<code>{}</code>将变量名包括起来</p>
+</li>
+</ol>
+<p>例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ num=2</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">"this is the <span class="variable">$&#123;num&#125;</span>nd"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="变量的数学运算"><a href="#变量的数学运算" class="headerlink" title="变量的数学运算"></a>变量的数学运算</h2><p>前面说过，变量默认全是字符串，也就是说像下面的例子是不会输出<code>2</code>的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ var=1</span><br><span class="line">$ var=<span class="variable">$var</span>+1</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$var</span> <span class="comment">#输出结果为 1+1</span></span><br></pre></td></tr></table></figure>
+<p>但是编程是离不开数学运算的，即便是脚本编程，所以怎么办呢？</p>
+<p>方法肯定是有的，而且根据脚本文件的第一行内容的不同，会有不同的解决方法。</p>
+<p>如果第一行是<code>#!/bin/sh</code>，可以用这样的方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ var=1</span><br><span class="line">$ var=$((var+1))</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$var</span> <span class="comment">#此时的输出结果为2</span></span><br></pre></td></tr></table></figure></p>
+<p>如果第一行是<code>#!/bin/bash</code>，可以用下面的方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ var=1</span><br><span class="line">$ ((var+=1))</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$var</span></span><br></pre></td></tr></table></figure></p>
+<p>或者也可以<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ var=1</span><br><span class="line">$ <span class="built_in">let</span> <span class="string">'var=var+1'</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$var</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/14/sh-Basic-Usage-1/" rel="next" title="shell脚本入门之一 - 基础">
+                <i class="fa fa-chevron-left"></i> shell脚本入门之一 - 基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/19/sh-Basic-Usage-3/" rel="prev" title="shell脚本入门之三 - 判断">
+                shell脚本入门之三 - 判断 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Rick" />
+          <p class="site-author-name" itemprop="name">Rick</p>
+          <p class="site-description motion-element" itemprop="description">以为漂泊是成长，必经的路牌</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本约定"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x57FA;&#x672C;&#x7EA6;&#x5B9A;" class="headerlink" title="&#x57FA;&#x672C;&#x7EA6;&#x5B9A;"></a>&#x57FA;&#x672C;&#x7EA6;&#x5B9A;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量名约定"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x53D8;&#x91CF;&#x540D;&#x7EA6;&#x5B9A;" class="headerlink" title="&#x53D8;&#x91CF;&#x540D;&#x7EA6;&#x5B9A;"></a>&#x53D8;&#x91CF;&#x540D;&#x7EA6;&#x5B9A;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的赋值和引用"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x53D8;&#x91CF;&#x7684;&#x8D4B;&#x503C;&#x548C;&#x5F15;&#x7528;" class="headerlink" title="&#x53D8;&#x91CF;&#x7684;&#x8D4B;&#x503C;&#x548C;&#x5F15;&#x7528;"></a>&#x53D8;&#x91CF;&#x7684;&#x8D4B;&#x503C;&#x548C;&#x5F15;&#x7528;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#赋值"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x8D4B;&#x503C;" class="headerlink" title="&#x8D4B;&#x503C;"></a>&#x8D4B;&#x503C;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x5F15;&#x7528;" class="headerlink" title="&#x5F15;&#x7528;"></a>&#x5F15;&#x7528;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的数学运算"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x53D8;&#x91CF;&#x7684;&#x6570;&#x5B66;&#x8FD0;&#x7B97;" class="headerlink" title="&#x53D8;&#x91CF;&#x7684;&#x6570;&#x5B66;&#x8FD0;&#x7B97;"></a>&#x53D8;&#x91CF;&#x7684;&#x6570;&#x5B66;&#x8FD0;&#x7B97;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rick</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'myslsh';
+      var disqus_identifier = '2016/12/15/sh-Basic-Usage-2/';
+
+      var disqus_title = "shell脚本入门之二 - 变量";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

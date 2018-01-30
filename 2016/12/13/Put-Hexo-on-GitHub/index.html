@@ -1,0 +1,736 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Git," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="起因因为工作的关系，公司对电脑的使用限制的比较严格，不可能在公司电脑上安装Hexo；同时，在公司的时候可能随时会冒出来一些想法或者看到一些资料，需要用Hexo写下来，这就让人比较蛋痛了。">
+<meta name="keywords" content="Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="将Hexo源文件放在GitHub上">
+<meta property="og:url" content="http://yoursite.com/2016/12/13/Put-Hexo-on-GitHub/index.html">
+<meta property="og:site_name" content="MySlsh">
+<meta property="og:description" content="起因因为工作的关系，公司对电脑的使用限制的比较严格，不可能在公司电脑上安装Hexo；同时，在公司的时候可能随时会冒出来一些想法或者看到一些资料，需要用Hexo写下来，这就让人比较蛋痛了。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-21T06:38:29.540Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="将Hexo源文件放在GitHub上">
+<meta name="twitter:description" content="起因因为工作的关系，公司对电脑的使用限制的比较严格，不可能在公司电脑上安装Hexo；同时，在公司的时候可能随时会冒出来一些想法或者看到一些资料，需要用Hexo写下来，这就让人比较蛋痛了。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/12/13/Put-Hexo-on-GitHub/"/>
+
+
+
+
+
+  <title> 将Hexo源文件放在GitHub上 | MySlsh </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">MySlsh</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/13/Put-Hexo-on-GitHub/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Rick">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="MySlsh">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="MySlsh" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                将Hexo源文件放在GitHub上
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-13T10:01:25+08:00">
+                2016-12-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Accessories/" itemprop="url" rel="index">
+                    <span itemprop="name">Accessories</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/12/13/Put-Hexo-on-GitHub/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/13/Put-Hexo-on-GitHub/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>因为工作的关系，公司对电脑的使用限制的比较严格，不可能在公司电脑上安装Hexo；同时，在公司的时候可能随时会冒出来一些想法或者看到一些资料，需要用Hexo写下来，这就让人比较蛋痛了。</p>
+<a id="more"></a>
+<p>好在自己有VPS，而且提供了基于网页的<code>Console</code>，可以在VPS上安装Hexo，远程操作。</p>
+<p>但是新问题又来了：</p>
+<ol>
+<li>Hexo关于博客的设置，包括主题什么的都是存在本地的，如果我在VPS上更改了Hexo的设置或者主题，在家里电脑上再次<code>generate</code>的话就会把VPS上的设置覆盖掉。</li>
+<li>VPS上基于网页的<code>Console</code>对中文十分不友好，无论是写中文内容还是操作和中文有关的设置，都会是一场悲剧。</li>
+</ol>
+<p>基于上面这些蛋疼（没事找抽）的需求，才有了这么一个疯狂的想法：把Hexo源文件放在GitHub上。</p>
+<h2 id="愿景"><a href="#愿景" class="headerlink" title="愿景"></a>愿景</h2><p>把Hexo源文件放在GitHub上基本上能满足以下需求：</p>
+<ol>
+<li>VPS上的Hexo和家里电脑上的Hexo文件能始终保持同步，从而避免出现设置相互覆盖的问题。</li>
+<li>如果是通过VPS建立的新文章，在执行完<code>hexo new</code>之后，可以<code>push</code>到GitHub上，从而实现在GitHub上编辑正文内容，避免了在网页版<code>Console</code>中编辑中文的尴尬。</li>
+</ol>
+<h2 id="折腾"><a href="#折腾" class="headerlink" title="折腾"></a>折腾</h2><h3 id="VPS端"><a href="#VPS端" class="headerlink" title="VPS端"></a>VPS端</h3><p>这里其实存在一个先后顺序，如果先配置VPS端的话，后续在个人电脑端配置的时候就需要用已经<code>push</code>到GitHub上的Hexo内容替换本地电脑上的Hexo内容，同理，如果是先配置个人电脑端的话，在VPS端就需要用已经<code>push</code>到GitHub上的Hexo内容替换VPS本地电脑上的Hexo内容。</p>
+<h4 id="第一步：在VPS上安装Git"><a href="#第一步：在VPS上安装Git" class="headerlink" title="第一步：在VPS上安装Git"></a>第一步：在VPS上安装Git</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git-core <span class="comment">#Ubuntu系统</span></span><br><span class="line">sudo dnf install git-core <span class="comment">#Fedora系统</span></span><br><span class="line">sudo yum install git-core <span class="comment">#Red Hat, CentOS系统</span></span><br></pre></td></tr></table></figure>
+<h4 id="第二步：通过nvm安装Node-js"><a href="#第二步：通过nvm安装Node-js" class="headerlink" title="第二步：通过nvm安装Node.js"></a>第二步：通过nvm安装Node.js</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh</span><br></pre></td></tr></table></figure>
+<p>重启终端后执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm install stable</span><br></pre></td></tr></table></figure></p>
+<h4 id="第三步：安装Hexo，并且在-lt-hexo-files-gt-文件夹中初始化"><a href="#第三步：安装Hexo，并且在-lt-hexo-files-gt-文件夹中初始化" class="headerlink" title="第三步：安装Hexo，并且在&lt;hexo-files&gt;文件夹中初始化"></a>第三步：安装Hexo，并且在<code>&lt;hexo-files&gt;</code>文件夹中初始化</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br><span class="line">$ hexo init /home/your user name/hexo-files</span><br><span class="line">$ <span class="built_in">cd</span> /home/your user name/hexo-files</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<h4 id="第四步：根据自己的需求更改Hexo的设置"><a href="#第四步：根据自己的需求更改Hexo的设置" class="headerlink" title="第四步：根据自己的需求更改Hexo的设置"></a>第四步：根据自己的需求更改Hexo的设置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git <span class="comment">#安装hexo-deployer-git</span></span><br></pre></td></tr></table></figure>
+<p>设置站点名称等其他设置，这里请参考Hexo官方文档中关于<code>_config.yml</code>的部分。</p>
+<p>设置主题的时候应当注意，很多Hexo主题都是托管在GitHub上的，在安装主题的时候大多会是通过<code>git clone</code>命令将主题文件克隆到Hexo的<code>themes</code>文件夹下。</p>
+<p>如果是在本地管理Hexo，没有任何问题，但是对于我这个奇（变）葩（态）的需求来说，会产生严重问题：</p>
+<p>我们需要将整个<code>&lt;hexo-files&gt;</code>目录下的所有文件和子目录作为一个<code>repo</code>放到GitHub上，而通过<code>git clone</code>命令会自动把所下载的主题作为一个<code>repo</code>放在<code>themes</code>文件夹下，这样就导致在我们自己的<code>repo</code>下有一个属于别人的子<code>repo</code>，当<code>push</code>到GitHub上以后，在GitHub上，子<code>repo</code>中的内容会显示为一个灰色的文件夹，其中的内容不可见。</p>
+<p>为了避免这种情况，我们需要使用<code>wget</code>或者是<code>curl</code>命令，手动下载主题的<code>zip</code>或者<code>tar.gz</code>文件，然后手动解压到<code>&lt;hexo-files&gt;</code>中的<code>themes</code>文件夹下。</p>
+<h4 id="第五步：设置Git所使用的用户名和邮箱："><a href="#第五步：设置Git所使用的用户名和邮箱：" class="headerlink" title="第五步：设置Git所使用的用户名和邮箱："></a>第五步：设置Git所使用的用户名和邮箱：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.email <span class="string">"you@example.com"</span></span><br><span class="line">$ git config --global user.name <span class="string">"Your Name"</span></span><br></pre></td></tr></table></figure>
+<h4 id="第六步：在GitHub上创建新的的repository并且得到该repo的https地址"><a href="#第六步：在GitHub上创建新的的repository并且得到该repo的https地址" class="headerlink" title="第六步：在GitHub上创建新的的repository并且得到该repo的https地址"></a>第六步：在GitHub上创建新的的<code>repository</code>并且得到该<code>repo</code>的<code>https</code>地址</h4><h4 id="第七步：将-lt-hexo-files-gt-中的所有文件关联到GitHub"><a href="#第七步：将-lt-hexo-files-gt-中的所有文件关联到GitHub" class="headerlink" title="第七步：将&lt;hexo-files&gt;中的所有文件关联到GitHub"></a>第七步：将<code>&lt;hexo-files&gt;</code>中的所有文件关联到GitHub</h4><p>在<code>&lt;hexo-files&gt;</code>目录中执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">$ git add *.*</span><br><span class="line">$ git commit -m <span class="string">"Create hexo files."</span></span><br><span class="line">$ git remote add origin <span class="string">"第六步得到的地址"</span></span><br><span class="line">$ git pull origin master</span><br><span class="line">$ git push -u origin master <span class="comment">#之后会提示输入GitHub的账号和密码</span></span><br></pre></td></tr></table></figure>
+<h3 id="个人电脑端"><a href="#个人电脑端" class="headerlink" title="个人电脑端"></a>个人电脑端</h3><h4 id="第一步：重复上面前三步，安装好Git和Hexo，并且通过hexo-init初始化到文件夹-lt-hexo-files-gt-中。"><a href="#第一步：重复上面前三步，安装好Git和Hexo，并且通过hexo-init初始化到文件夹-lt-hexo-files-gt-中。" class="headerlink" title="第一步：重复上面前三步，安装好Git和Hexo，并且通过hexo init初始化到文件夹&lt;hexo-files&gt;中。"></a>第一步：重复上面前三步，安装好Git和Hexo，并且通过<code>hexo init</code>初始化到文件夹<code>&lt;hexo-files&gt;</code>中。</h4><h4 id="第二步：在-lt-hexo-files-gt-文件夹中初始化Git"><a href="#第二步：在-lt-hexo-files-gt-文件夹中初始化Git" class="headerlink" title="第二步：在&lt;hexo-files&gt;文件夹中初始化Git"></a>第二步：在<code>&lt;hexo-files&gt;</code>文件夹中初始化Git</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">$ git add .</span><br><span class="line">$ git remote add origin <span class="string">"GitHub远程仓库的地址，即是前面第六步得到的地址"</span></span><br></pre></td></tr></table></figure>
+<h4 id="第三步：用GitHub上的内容替换掉本地内容"><a href="#第三步：用GitHub上的内容替换掉本地内容" class="headerlink" title="第三步：用GitHub上的内容替换掉本地内容"></a>第三步：用GitHub上的内容替换掉本地内容</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard origin/master</span><br><span class="line">$ git pull origin master</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="发文章"><a href="#发文章" class="headerlink" title="发文章"></a>发文章</h3><h4 id="VPS"><a href="#VPS" class="headerlink" title="VPS"></a>VPS</h4><p>正常来讲，通过Hexo发布一篇新文章需要通过<code>hexo new post post-title</code>命令，这条命令会自动在<code>&lt;hexo-files&gt;</code>下的<code>&lt;_source/_posts&gt;</code>目录下新建一个名为<code>post-title.md</code>的文件，这个文件内的MarkDown格式的内容就是文章的正文内容。</p>
+<p>实际上，在这一步，Hexo除了帮我们创建一个文件以外，并没有做其它额外的操作，而且事实证明，在<code>&lt;_source/_posts&gt;</code>目录下，即便是自己手动创建的<code>.md</code>文件，也可以被<code>hexo generate</code>命令识别。</p>
+<p>所以，我们可以直接在GitHub上，在<code>&lt;_source/_posts&gt;</code>目录下，手动建立一个<code>.md</code>文件，并且使用Markdown格式完成正文内容，然后再回到VPS：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git pull origin master <span class="comment">#把新建的Markdown文件拿到本地</span></span><br><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>Hexo执行完<code>generate</code>和<code>deploy</code>命令之后，对<code>&lt;hexo-files&gt;</code>目录下的文件并不会有任何改动，这一点可以通过<code>git status</code>命令确认，所以也就不需要再执行<code>git push</code>。</p>
+<h4 id="个人电脑"><a href="#个人电脑" class="headerlink" title="个人电脑"></a>个人电脑</h4><p>在个人电脑上，我们有自己喜欢的文本编辑器，并且也不存在中文支持问题，所以完全可以在本地编辑文章，只不过要记得编辑完之后要使用<code>push</code>命令，因为我们手动改变了<code>&lt;hexo-files&gt;</code>内的内容，要把更改同步到GitHub以使GitHub上内容始终是最新的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git pull origin master <span class="comment">#更新本地文件确保和GitHub上保持同步</span></span><br><span class="line">$ hexo new post <span class="string">"My Post"</span> <span class="comment">#新建一篇博文</span></span><br><span class="line"><span class="comment">#使用自己喜欢的文本编辑器完成"My Post.md"</span></span><br><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br><span class="line">$ git add . <span class="comment">#将新建立的文件纳入Git的监视</span></span><br><span class="line">$ git commit -m <span class="string">"Create My Post"</span> <span class="comment">#提交更改</span></span><br><span class="line">$ git push -u origin master <span class="comment">#之后会提示输入GitHub的账号和密码</span></span><br></pre></td></tr></table></figure>
+<h3 id="发布新页面"><a href="#发布新页面" class="headerlink" title="发布新页面"></a>发布新页面</h3><p>与发文章类似，不同在于<code>hexo new page page_name</code>命令将在<code>&lt;source&gt;</code>目录下创建一个名为<code>&lt;page_name&gt;</code>的子目录，并在该子目录下建立一个名为<code>index.md</code>的文件，如果是在GitHub上手动创建的话，不要忘记将页面的名字作为子目录的名字，而页面的内容放在子目录下的<code>index.md</code>文件中。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实Hexo本身已经是一个很优秀的博客程序，也足够方便，可是总会有一些像我这样的人会有一些奇（没）奇（事）怪（找）怪（抽）的需求，本着不折腾会死的精神，尝试了这么一套解决方法，现在用起来还算是比较顺手，只不过需要来回的敲那些命令，不过好在Linux上有个东西叫做shell脚本。</p>
+<p>以后终于可以随时随地开开心心的Hexo了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag"># Git</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/14/sh-Basic-Usage-1/" rel="prev" title="shell脚本入门之一 - 基础">
+                shell脚本入门之一 - 基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Rick" />
+          <p class="site-author-name" itemprop="name">Rick</p>
+          <p class="site-description motion-element" itemprop="description">以为漂泊是成长，必经的路牌</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x8D77;&#x56E0;" class="headerlink" title="&#x8D77;&#x56E0;"></a>&#x8D77;&#x56E0;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#愿景"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x613F;&#x666F;" class="headerlink" title="&#x613F;&#x666F;"></a>&#x613F;&#x666F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#折腾"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x6298;&#x817E;" class="headerlink" title="&#x6298;&#x817E;"></a>&#x6298;&#x817E;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VPS端"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#VPS&#x7AEF;" class="headerlink" title="VPS&#x7AEF;"></a>VPS&#x7AEF;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步：在VPS上安装Git"><span class="nav-number">3.1.1.</span> <span class="nav-text"><a href="#&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x5728;VPS&#x4E0A;&#x5B89;&#x88C5;Git" class="headerlink" title="&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x5728;VPS&#x4E0A;&#x5B89;&#x88C5;Git"></a>&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x5728;VPS&#x4E0A;&#x5B89;&#x88C5;Git</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步：通过nvm安装Node-js"><span class="nav-number">3.1.2.</span> <span class="nav-text"><a href="#&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x901A;&#x8FC7;nvm&#x5B89;&#x88C5;Node-js" class="headerlink" title="&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x901A;&#x8FC7;nvm&#x5B89;&#x88C5;Node.js"></a>&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x901A;&#x8FC7;nvm&#x5B89;&#x88C5;Node.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三步：安装Hexo，并且在-lt-hexo-files-gt-文件夹中初始化"><span class="nav-number">3.1.3.</span> <span class="nav-text"><a href="#&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;&#x5B89;&#x88C5;Hexo&#xFF0C;&#x5E76;&#x4E14;&#x5728;-lt-hexo-files-gt-&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x521D;&#x59CB;&#x5316;" class="headerlink" title="&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;&#x5B89;&#x88C5;Hexo&#xFF0C;&#x5E76;&#x4E14;&#x5728;&lt;hexo-files&gt;&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x521D;&#x59CB;&#x5316;"></a>&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;&#x5B89;&#x88C5;Hexo&#xFF0C;&#x5E76;&#x4E14;&#x5728;<code>&lt;hexo-files&gt;</code>&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x521D;&#x59CB;&#x5316;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四步：根据自己的需求更改Hexo的设置"><span class="nav-number">3.1.4.</span> <span class="nav-text"><a href="#&#x7B2C;&#x56DB;&#x6B65;&#xFF1A;&#x6839;&#x636E;&#x81EA;&#x5DF1;&#x7684;&#x9700;&#x6C42;&#x66F4;&#x6539;Hexo&#x7684;&#x8BBE;&#x7F6E;" class="headerlink" title="&#x7B2C;&#x56DB;&#x6B65;&#xFF1A;&#x6839;&#x636E;&#x81EA;&#x5DF1;&#x7684;&#x9700;&#x6C42;&#x66F4;&#x6539;Hexo&#x7684;&#x8BBE;&#x7F6E;"></a>&#x7B2C;&#x56DB;&#x6B65;&#xFF1A;&#x6839;&#x636E;&#x81EA;&#x5DF1;&#x7684;&#x9700;&#x6C42;&#x66F4;&#x6539;Hexo&#x7684;&#x8BBE;&#x7F6E;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第五步：设置Git所使用的用户名和邮箱："><span class="nav-number">3.1.5.</span> <span class="nav-text"><a href="#&#x7B2C;&#x4E94;&#x6B65;&#xFF1A;&#x8BBE;&#x7F6E;Git&#x6240;&#x4F7F;&#x7528;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x90AE;&#x7BB1;&#xFF1A;" class="headerlink" title="&#x7B2C;&#x4E94;&#x6B65;&#xFF1A;&#x8BBE;&#x7F6E;Git&#x6240;&#x4F7F;&#x7528;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x90AE;&#x7BB1;&#xFF1A;"></a>&#x7B2C;&#x4E94;&#x6B65;&#xFF1A;&#x8BBE;&#x7F6E;Git&#x6240;&#x4F7F;&#x7528;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x90AE;&#x7BB1;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第六步：在GitHub上创建新的的repository并且得到该repo的https地址"><span class="nav-number">3.1.6.</span> <span class="nav-text"><a href="#&#x7B2C;&#x516D;&#x6B65;&#xFF1A;&#x5728;GitHub&#x4E0A;&#x521B;&#x5EFA;&#x65B0;&#x7684;&#x7684;repository&#x5E76;&#x4E14;&#x5F97;&#x5230;&#x8BE5;repo&#x7684;https&#x5730;&#x5740;" class="headerlink" title="&#x7B2C;&#x516D;&#x6B65;&#xFF1A;&#x5728;GitHub&#x4E0A;&#x521B;&#x5EFA;&#x65B0;&#x7684;&#x7684;repository&#x5E76;&#x4E14;&#x5F97;&#x5230;&#x8BE5;repo&#x7684;https&#x5730;&#x5740;"></a>&#x7B2C;&#x516D;&#x6B65;&#xFF1A;&#x5728;GitHub&#x4E0A;&#x521B;&#x5EFA;&#x65B0;&#x7684;&#x7684;<code>repository</code>&#x5E76;&#x4E14;&#x5F97;&#x5230;&#x8BE5;<code>repo</code>&#x7684;<code>https</code>&#x5730;&#x5740;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第七步：将-lt-hexo-files-gt-中的所有文件关联到GitHub"><span class="nav-number">3.1.7.</span> <span class="nav-text"><a href="#&#x7B2C;&#x4E03;&#x6B65;&#xFF1A;&#x5C06;-lt-hexo-files-gt-&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x5173;&#x8054;&#x5230;GitHub" class="headerlink" title="&#x7B2C;&#x4E03;&#x6B65;&#xFF1A;&#x5C06;&lt;hexo-files&gt;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x5173;&#x8054;&#x5230;GitHub"></a>&#x7B2C;&#x4E03;&#x6B65;&#xFF1A;&#x5C06;<code>&lt;hexo-files&gt;</code>&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x5173;&#x8054;&#x5230;GitHub</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人电脑端"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x4E2A;&#x4EBA;&#x7535;&#x8111;&#x7AEF;" class="headerlink" title="&#x4E2A;&#x4EBA;&#x7535;&#x8111;&#x7AEF;"></a>&#x4E2A;&#x4EBA;&#x7535;&#x8111;&#x7AEF;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步：重复上面前三步，安装好Git和Hexo，并且通过hexo-init初始化到文件夹-lt-hexo-files-gt-中。"><span class="nav-number">3.2.1.</span> <span class="nav-text"><a href="#&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x91CD;&#x590D;&#x4E0A;&#x9762;&#x524D;&#x4E09;&#x6B65;&#xFF0C;&#x5B89;&#x88C5;&#x597D;Git&#x548C;Hexo&#xFF0C;&#x5E76;&#x4E14;&#x901A;&#x8FC7;hexo-init&#x521D;&#x59CB;&#x5316;&#x5230;&#x6587;&#x4EF6;&#x5939;-lt-hexo-files-gt-&#x4E2D;&#x3002;" class="headerlink" title="&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x91CD;&#x590D;&#x4E0A;&#x9762;&#x524D;&#x4E09;&#x6B65;&#xFF0C;&#x5B89;&#x88C5;&#x597D;Git&#x548C;Hexo&#xFF0C;&#x5E76;&#x4E14;&#x901A;&#x8FC7;hexo init&#x521D;&#x59CB;&#x5316;&#x5230;&#x6587;&#x4EF6;&#x5939;&lt;hexo-files&gt;&#x4E2D;&#x3002;"></a>&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x91CD;&#x590D;&#x4E0A;&#x9762;&#x524D;&#x4E09;&#x6B65;&#xFF0C;&#x5B89;&#x88C5;&#x597D;Git&#x548C;Hexo&#xFF0C;&#x5E76;&#x4E14;&#x901A;&#x8FC7;<code>hexo init</code>&#x521D;&#x59CB;&#x5316;&#x5230;&#x6587;&#x4EF6;&#x5939;<code>&lt;hexo-files&gt;</code>&#x4E2D;&#x3002;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步：在-lt-hexo-files-gt-文件夹中初始化Git"><span class="nav-number">3.2.2.</span> <span class="nav-text"><a href="#&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x5728;-lt-hexo-files-gt-&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x521D;&#x59CB;&#x5316;Git" class="headerlink" title="&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x5728;&lt;hexo-files&gt;&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x521D;&#x59CB;&#x5316;Git"></a>&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x5728;<code>&lt;hexo-files&gt;</code>&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x521D;&#x59CB;&#x5316;Git</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三步：用GitHub上的内容替换掉本地内容"><span class="nav-number">3.2.3.</span> <span class="nav-text"><a href="#&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;&#x7528;GitHub&#x4E0A;&#x7684;&#x5185;&#x5BB9;&#x66FF;&#x6362;&#x6389;&#x672C;&#x5730;&#x5185;&#x5BB9;" class="headerlink" title="&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;&#x7528;GitHub&#x4E0A;&#x7684;&#x5185;&#x5BB9;&#x66FF;&#x6362;&#x6389;&#x672C;&#x5730;&#x5185;&#x5BB9;"></a>&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;&#x7528;GitHub&#x4E0A;&#x7684;&#x5185;&#x5BB9;&#x66FF;&#x6362;&#x6389;&#x672C;&#x5730;&#x5185;&#x5BB9;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;" class="headerlink" title="&#x4F7F;&#x7528;"></a>&#x4F7F;&#x7528;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发文章"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#&#x53D1;&#x6587;&#x7AE0;" class="headerlink" title="&#x53D1;&#x6587;&#x7AE0;"></a>&#x53D1;&#x6587;&#x7AE0;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VPS"><span class="nav-number">4.1.1.</span> <span class="nav-text"><a href="#VPS" class="headerlink" title="VPS"></a>VPS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#个人电脑"><span class="nav-number">4.1.2.</span> <span class="nav-text"><a href="#&#x4E2A;&#x4EBA;&#x7535;&#x8111;" class="headerlink" title="&#x4E2A;&#x4EBA;&#x7535;&#x8111;"></a>&#x4E2A;&#x4EBA;&#x7535;&#x8111;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布新页面"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#&#x53D1;&#x5E03;&#x65B0;&#x9875;&#x9762;" class="headerlink" title="&#x53D1;&#x5E03;&#x65B0;&#x9875;&#x9762;"></a>&#x53D1;&#x5E03;&#x65B0;&#x9875;&#x9762;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rick</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'myslsh';
+      var disqus_identifier = '2016/12/13/Put-Hexo-on-GitHub/';
+
+      var disqus_title = "将Hexo源文件放在GitHub上";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
