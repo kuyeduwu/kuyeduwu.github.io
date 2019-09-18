@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Set primary display in Mac</title>
+      <link href="/2019/09/17/Set-primary-display-in-Mac/"/>
+      <url>/2019/09/17/Set-primary-display-in-Mac/</url>
+      
+        <content type="html"><![CDATA[<p>Mac is absolutly a nearly perfect operating system for personal computers, but it has its limitations, one is about how to set primary display when you connect your Mac to more than one monitors.</p><a id="more"></a><p>Here are the steps:</p><ol><li>Go to system preferences.</li></ol><p><img src="/images/mac-app-menu.png" alt="Mac system menu"></p><ol><li>Open the Display setting.</li></ol><p><img src="/images/Mac-system-perference.png" alt="Mac system perference"></p><ol><li>Go to the Arrangement tab.</li></ol><p><img src="/images/Mac-display-setting.png" alt="Mac display setting"></p><ol><li>Drag the white bar (rectangled in blue) to the monitor which you want to set as primary.</li></ol><p><img src="/images/Mac-display-arrangement.png" alt="Mac display arrangement"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Accessories </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mac </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Cannot Debug Python in VS Code</title>
       <link href="/2018/11/12/Cannot-Debug-Python-in-VS-Code/"/>
       <url>/2018/11/12/Cannot-Debug-Python-in-VS-Code/</url>
